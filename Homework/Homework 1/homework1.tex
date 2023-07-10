@@ -1,0 +1,683 @@
+\documentclass[11pt]{exam}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts, amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+
+% in order to compile this file you need to get 'header.tex' from
+% Canvas and change the line below to the appropriate file path
+\input{header}
+
+\geometry{left=2.5 cm,right=2.5 cm,top=2.5 cm,bottom=2.5 cm}
+%\pagestyle{fancy}
+\definecolor{mygreen}{rgb}{0,0.6,0}  
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82} 
+\definecolor{background}{rgb}{0.963,0.963,0.963}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+\newcommand{\hwnum}{1}
+\newcommand{\duedate}{Oct 16 23:59, 2021}
+
+%\notesheader
+\hwheader   % header for homework
+%\hwslnheader   % header for homework solutions
+
+% Comment the following line in order to hide solutions.
+% Uncomment the line to show solutions written inside of
+% LaTeX solution environments like:
+%   \begin{solution}
+%     My solution.
+%   \end{solution}.
+\printanswers
+
+\begin{document}
+\setlength{\parindent}{0pt}
+\section*{Before you start:}
+
+\subsection*{Homework Files}
+You can download the starter files for coding as well as this \textit{tex} file (you only need to modify \textit{homework1.tex}) on canvas and do your homework with latex. Or you can scan your handwriting, convert to pdf file, and upload it to canvas before the due date. If you choose to write down your answers by hand, you can directly download the pdf file on canvas which provides more blank space for solution box.\\
+
+\subsection*{Submission Form}
+For homework 1, there are two parts of submission:
+\begin{enumerate}
+    \item A pdf file as your solution named as VE281\_HW1\_[Your Student ID]\_[Your name].pdf uploaded to canvas
+    \item Code for 3.2 uploaded to joj (there will be hidden cases but the time restriction is similar to the pretest cases).
+\end{enumerate}
+For the programming question(question 3.2),you must make sure that your code compiles successfully on a Linux operating system with g++ and the options:
+\begin{lstlisting}[language=bash]
+-std=c++1z -Wconversion -Wall -Werror -Wextra -pedantic
+\end{lstlisting}
+
+Estimated time used for this homework: \textbf{4-5 hours.}
+\\\\
+Great credits to 2021FA and 2021SU VE281 TA Group!
+
+\newpage
+\section*{0\quad Student Info (0 point)}
+Your name and student id:
+\begin{solution}
+% Write your answer here
+\end{solution}
+
+\section{Complexity Analysis (20 points, after Lec2)}
+
+\begin{enumerate}[(a)]
+
+\item Based on the given code, answer the following questions:(4 points)
+\begin{lstlisting}[language=c++]
+void question_1a(int n) {
+	int count = 0;
+	for (int i = 0; i <= n; i++) {
+	 	for (int j = i; j > 0; j--) {
+	 		count += j;
+	    }
+	}
+	cout << count << endl;
+}
+\end{lstlisting}
+\begin{enumerate}[i)]
+\item What is the output? Describe the answer with variable $n$. (2 points)
+\item What is the time complexity of the following function? (2 points)
+\end{enumerate}
+
+\begin{solution}
+% Write your answer here
+~\\
+~\\
+\end{solution}
+
+\item What is the time complexity of the following function? (4 points)
+\begin{lstlisting}[language=c++]
+void question_1b(int N, int M, int K) {
+	int count = 0;
+	for (int i = 0; i < N; i += 2) {
+		for (int j = 0; j < M / 2; j++) {
+			count++;
+		}
+	}
+	for (int i = 0; i < K; i++) {
+		count--;
+	}
+}
+\end{lstlisting}
+
+\begin{solution}
+% Write your answer here
+~\\
+~\\
+~\\
+~\\
+\end{solution}
+
+\item What is the time complexity of the following function? Select \textbf{All} the answers that are correct, and state your reason.  (4 points)
+\begin{lstlisting}[language=c++]
+void question_1c(int n) {
+	int count = 0;
+	int m = static_cast<int>(floor(sqrt(n)));
+	for (int i = n/2; i < n; i++) {
+		for (int j = 1; j < n; j = 2*j) {
+			for (int k = 0; k < n; k += m) {
+				count++;
+			}
+		}
+	}
+}
+\end{lstlisting}
+\begin{enumerate}[A)]
+\item $\Theta(n^{1/2}\log n)$
+\item $\Theta(n \log n)$
+\item $O(n \log n)$
+\item $\Theta(n^{3/2}\log n)$
+\item $\Theta(n^2\log n)$
+\item $O(n^{5/2}\log n)$
+\item $\Theta(n^{5/2}\log n)$
+\end{enumerate}
+\begin{solution}
+% Write your answer here
+\end{solution}
+
+\item What is the time complexity of the following function (using $\Theta)$? Show your steps. (4 points)
+\begin{lstlisting}[language=c++]
+int love281(int n) {
+	if (n <= 3) return 1;
+	return (love281(n - 1) + love281(n - 2) * love281(n - 3);
+}
+\end{lstlisting}
+\begin{solution}
+% Write your answer here
+\end{solution}
+
+\item Consider the following four statements regarding algorithm complexities:
+\begin{enumerate}[i)]
+\item an algorithm with a $\Theta(n \log n)$ time complexity will always run faster than an algorithm with a $\Theta(n^2)$ time complexity.
+\item an algorithm with a constant time complexity will always run faster than an algorithm with a $\Theta(\log n)$ time complexity.
+\item an algorithm with a $\Theta(n!)$ time complexity will always run faster than an algorithm with a $\Theta(n^2)$ time complexity.
+\item an algorithm with a $\Theta(n^2)$ time complexity will always run faster than an algorithm with a $\Theta(n!)$ time complexity.
+\end{enumerate}
+
+Which of these statements is/are true? Show your reasons. (4 points)
+\begin{solution}
+% Write your answer here
+~\\
+\end{solution}
+
+\end{enumerate}
+
+% \newpage
+\section{Master Theorem (15 points, after Lec3)}
+\subsection{Recurrence Relation (9 points)}
+What is the complexity of the following recurrence relation? (if not mentioned, please state it with big-theta notation.)
+\begin{enumerate}[(a)]
+
+\item $T(n) = \left\{
+\begin{aligned}
+&c_0, &n=1\\
+&6T\left(\dfrac{n}{3}\right)+\left(3n+2\right)\left(4n+1\right), &n>1\\
+\end{aligned}
+\right.
+$
+
+\begin{solution}
+% Write your answer here
+\end{solution}
+
+\item $T(n) = \left\{
+\begin{aligned}
+&c_0, &n=1\\
+&3T\left(\dfrac{n}{9}\right)+2\log n + 3\sqrt{n}+c, &n>1\\
+\end{aligned}
+\right.
+$
+
+
+\begin{solution}
+% Write your answer here
+\end{solution}
+
+\item $T(n) = \left\{
+\begin{aligned}
+&c_0, &n=1\\
+&3T(\frac{n}{4})+n\log n + c, &n>1\\
+\end{aligned}
+\right.
+$
+\begin{solution}
+% Write your answer here
+\end{solution}
+\end{enumerate}
+
+\subsection{Master Theorem on code (6 points)}
+Based on the function below, answer the following question. \textbf{Assume that $cake(n)$ runs in $\log n$ time.}
+\begin{lstlisting}[language=c++]
+void pie(int n) {
+	if (n == 1) {
+		return;
+	}
+	pie(n / 4);
+	int cookie = n * n;
+	for (int i = 0; i < cookie; ++i) {
+		for (int j = 0; j < n; ++j) {
+			cake(n);
+		}
+	}
+	for (int k = 0; k < cookie; ++k) {
+		pie(n / 5);
+	}
+	cake(cookie * cookie);
+}
+\end{lstlisting}
+Calculate the recurrence relation of this function.
+\begin{solution}
+% Write your answer here
+\end{solution}
+
+\section{Sorting Algorithms (45 points, after Lec4)}
+
+\subsection{Sorting Basics (9 points)}
+{In this part, you only need to write down your choice. No explanation is required. }
+\subsubsection{Sorting algorithms' working scenarios (3 points)}
+
+What is the most efficient sorting algorithm for each of the following situations?
+\begin{enumerate}[(a)]
+    \item Given a small array of integers.
+    \begin{enumerate}[A)]
+        \item insertion sort
+        \item selection sort
+        \item quick sort
+        \item bucket sort
+    \end{enumerate}
+    \begin{solution}
+        % Write your answer here
+    \end{solution}
+
+    \item Given a large array of integers that is already almost sorted.
+    \begin{enumerate}[A)]
+        \item insertion sort
+        \item selection sort
+        \item quick sort
+        \item bucket sort
+    \end{enumerate}
+    \begin{solution}
+        % Write your answer here
+    \end{solution}
+
+    \item Given a large collection of integers that are drawn from a very small range.
+    \begin{enumerate}[A)]
+        \item insertion sort
+        \item selection sort
+        \item quick sort
+        \item counting sort
+    \end{enumerate}
+    \begin{solution}
+        % Write your answer here
+    \end{solution}
+
+\end{enumerate}
+
+% Try to state your explanation from the following perspectives: The number of swaps / copies / compares; Time complexity; special cases depend on input; ...
+
+
+\subsubsection{Sorting snapshots (6 points)}
+
+\begin{enumerate}[(a)]
+    \item Suppose you had the following unsorted array:
+        \begin{center}
+            \{22, 9, 13, 52, 66, 74, 28, 59, 71, 35, 11, 47\}
+        \end{center}
+        A snapshot is taken during execution of a sorting algorithm. If the snapshot of the array is:
+        \begin{center}
+            \{9, 13, 22, 52, 66, 74, 28, 59, 71, 11, 35, 47\}
+        \end{center}
+        which of the following sorts is currently being run on this array?
+        \begin{enumerate}[A)]
+            \item bubble sort
+            \item insertion sort
+            \item selection sort
+            \item quick sort
+            \item merge sort
+            \item none of above
+        \end{enumerate}
+        \begin{solution}
+        % Write your answer here
+        \end{solution}
+    \item Suppose you had the following unsorted array:
+        \begin{center}
+            \{22, 9, 13, 52, 66, 74, 28, 59, 71, 35, 11, 47\}
+        \end{center}
+        A snapshot is taken during execution of a sorting algorithm. If the snapshot of the array is:
+        \begin{center}
+            \{9, 11, 13, 22, 28, 74, 66, 59, 71, 35, 52, 47\}
+        \end{center}
+        which of the following sorts is currently being run on this array?
+        \begin{enumerate}[A)]
+            \item bubble sort
+            \item insertion sort
+            \item selection sort
+            \item quick sort
+            \item merge sort
+            \item none of above
+        \end{enumerate}
+        \begin{solution}
+        % Write your answer here
+        \end{solution}
+    \item Suppose you had the following unsorted array:
+        \begin{center}
+            \{22, 9, 13, 52, 66, 74, 28, 59, 71, 35, 11, 47\}
+        \end{center}
+        A snapshot is taken during execution of a sorting algorithm. If the snapshot of the array is:
+        \begin{center}
+            \{22, 9, 13, 11, 35, 28, 47, 59, 71, 66, 52, 74\}
+        \end{center}
+        which of the following sorts is currently being run on this array?
+        \begin{enumerate}[A)]
+            \item bubble sort
+            \item insertion sort
+            \item selection sort
+            \item quick sort
+            \item merge sort
+            \item none of above
+        \end{enumerate}
+        \begin{solution}
+        % Write your answer here
+        \end{solution}
+\end{enumerate}
+
+\subsection{Squares of a Sorted Array (17 points)}
+You are given an integer array $A$ sorted in \textbf{non-decreasing order (non-positive numbers included)},
+and you are required to return an array of the \textbf{squares} of each number sorted in non-decreasing order.
+It is guaranteed that there is \textbf{always one zero($0$)} in the given array. 
+Here is the sample code:
+\begin{lstlisting}[language=c++]
+#include <iostream>
+using namespace std;
+
+// REQUIRES: an array A and its size n
+// EFFECTS: sort array A
+// MODIFIES: array A
+void insertion_sort(int *A, size_t size) {
+    for (size_t i = 1; i < size; i++) {
+        size_t j = 0;
+        while (j < i && A[i] >= A[j]) {
+            j++; // Find the location to insert the value
+        }
+        int tmp = A[i]; // Store the value we need to insert
+        for (size_t k = i; k > j; k--) {
+            A[k] = A[k-1];
+        }
+        A[j] = tmp;
+    }
+}
+
+int main(){
+    int A[5] = {-4, -1, 0, 3, 10};
+    size_t sizeA = 5;
+    for (size_t i = 0; i < sizeA; i++) { //Calculate the square of input array
+        A[i] = A[i] * A[i];
+    }
+    insertion_sort(A, sizeA);
+    for (auto item: A) {
+        cout << item << ' ';
+    }
+    cout << endl;
+    return 0;
+}
+\end{lstlisting}
+
+However, the code runs quite slowly when it encounters
+array with great length. It is found that some operations maybe useless in his code
+because of the \textbf{special property of the input array}.
+Hence, you are required to find out how the code can be improved to have \textbf{$\Theta(n)$ time complexity}. \textbf{You should follow the provided starter file.}
+\newline
+
+In the starter file, we have finished the IO part for you, and here is the IO rule:\\
+\textbf{Input format}: an integer array $A$ sorted in non-decreasing order with always one zero (non-positive numbers included)\\
+\textbf{Output format}: an array of the squares of each number sorted in non-decreasing order
+\newline
+\vspace{0.2cm}
+
+Here are some demos:
+\begin{itemize}
+    \item \textbf{Sample 1}\\
+    Input: \lstinline|-1 0 1| \\
+    Output: \lstinline|0 1 1|
+    \item \textbf{Sample 2}\\
+    Input: \lstinline|-4 -2 0 1 3| \\
+    Output: \lstinline|0 1 4 9 16|
+\end{itemize}
+% \newline
+
+*You can find the starter code in the given starter file \textit{square.cpp}. Please finish the \lstinline|square_sort()| function in \textit{square.cpp} file, and upload the file to joj(DO NOT CHANGE THE FILE NAME!!). \\
+*Since the cases on joj are quite small, they are just used for you to briefly check the correctness of your code. We will manually check the time complexity of your code.
+
+
+\subsection{Wiggle Sort (6 + 6 points)}
+If we are given an unordered array $arr$, we would like to reorder it \textbf{in-place}
+such that $arr[0] \leq arr[1] \geq arr[2] \leq arr[3] \dots$ Write the \textbf{pseudocode} clearly.
+
+The intuitive idea you can think of is to first sort the original array, and then
+manipulate some swapping to achieve required reordering. The average time complexity
+is $\Theta (n \log n)$.
+
+\begin{solution}
+    % Write your answer here
+    \begin{algorithm}[H]
+        \textbf{Input}: an array $arr$ of $n$ elements\\
+        \textbf{Output}: the reordering array of $arr$
+        \caption{WiggleSort(arr[.])}
+        ~\\
+        ~\\
+        ~\\
+        ~\\
+        ~\\
+        ~\\
+        ~\\
+    \end{algorithm}
+\end{solution}
+
+Another more efficient way is to think of the property of each position. For example, if
+it is of odd index, then it should be larger or equal to the left element. The method's time complexity
+is $\Theta(n)$.
+
+\begin{solution}
+    % Write your answer here
+    \begin{algorithm}[H]
+        \textbf{Input}: an array $arr$ of $n$ elements\\
+        \textbf{Output}: the reordering array of $arr$
+        \caption{WiggleSort(arr[.])}
+        ~\\
+        ~\\
+        ~\\
+        ~\\
+        ~\\
+        ~\\
+        ~\\
+    \end{algorithm}
+\end{solution}
+
+% \begin{algorithm}[H]
+% 	\textbf{Input}: an array $arr$ of n elements\\
+% 	\textbf{Output}: the reordering array of $arr$
+% 	\caption{WiggleSort(arr[.])}
+	
+% 	\begin{algorithmic}[1]
+% 	    \For{i $=$ 0; i $<$ n; i $+=$ x }  
+%             \State insertionSort(a,i,min(i+x-1, n-1));  
+%         \EndFor  
+%         \For{step $=$ x; step $<$ n; step $*=$ 2}
+%             \For{left $=$ 0; left $<$ n; left $+=$ 2 $*$ step}
+%                 \State mid = left + step - 1;
+%                 \State right = min(left + 2$*$step - 1, n - 1);
+%                 \State merge(a, left, mid, right);
+%             \EndFor
+%         \EndFor
+% 	\end{algorithmic}  
+% \end{algorithm}
+
+
+\subsection{Quicker sort simulation (7 points)}
+To get a better understanding of the mechanism of sorting algorithm, please simulate the given array for each iteration of required algorithm.
+
+\subsubsection{Quick sort (3 points)}
+
+Assume that we always choose the \textbf{first entry} as the pivot to do the partition, and we want to sort the array in \textbf{ascending order}. Then, for the following array:
+\begin{align*}
+A = \{6, 2, 8, 10, 3, 1, 9\}
+\end{align*}
+
+Please give the solution in the following format
+\begin{solution}
+% Table generated by Excel2LaTeX from sheet 'Sheet1'
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lllll}
+    Iter  & Current Subarray & Pivot & Swapped Subarray & Current Array \\
+    \hline
+    1     & $\{6,2,8,10,3,1,9\}$ & 6     & $\{3,2,1,6,10,8,9\}$ & $\{3,2,1,6,10,8,9\}$ \\
+    2     & $\{3,2,1\}$ & 3     & $\{1,2,3\}$ & $\{1,2,3,6,10,8,9\}$ \\
+    3     & $\{1,2\}$ & 1     & $\{1,2\}$ & $\{1,2,3,6,10,8,9\}$ \\
+    4     & $\{\}$ & None  & $\{\}$ & $\{1,2,3,6,10,8,9\}$ \\
+    5     & $\{2\}$ & None  & $\{2\}$ & $\{1,2,3,6,10,8,9\}$ \\
+    6     & $\{\}$ & None  & $\{\}$ & $\{1,2,3,6,10,8,9\}$ \\
+    7     & $\{10,8,9\}$ & 10    & $\{9,8,10\}$ & $\{1,2,3,6,9,8,10\}$ \\
+    8     & $\{9,8\}$ & 9     & $\{8,9\}$ & $\{1,2,3,6,8,9,10\}$ \\
+    9     & $\{8\}$ & None  & $\{8\}$ & $\{1,2,3,6,8,9,10\}$ \\
+    10    & $\{\}$ & None  & $\{\}$ & $\{1,2,3,6,8,9,10\}$ \\
+    11    & $\{\}$ & None  & $\{\}$ & $\{1,2,3,6,8,9,10\}$ \\
+    \end{tabular}%
+\end{table}%
+
+*Brief explanation:
+You need to strictly follow the algorithm we learned in class as the following (since there are so many different kinds of quick sort with slight changes).
+\begin{lstlisting}[language=c++]
+void quicksort(int *a, int left, int right) {
+	int pivotat; // index of the pivot
+	if(left >= right) return;
+	pivotat = partition(a, left, right);
+	quicksort(a, left, pivotat-1);
+	quicksort(a, pivotat+1, right);
+}
+\end{lstlisting}
+
+The steps above strictly follows the recursion order. For example, for iter 4, this is the left half part of iter 3, while iter 5 is the right half part of iter 3.
+\end{solution}
+
+Now please simulate quick sort for the following array:
+\begin{align*}
+A = \{6, 3, 15, 2, 7, 11, 8, 1, 10, 9, 4, 13\}
+\end{align*}
+You should follow the format above.
+\begin{solution}
+% Write your answer here
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+\end{solution}
+
+\subsubsection{Merge Sort (4 points)}
+For the following array:
+\begin{align*}
+A = \{6, 2, 8, 10, 3, 1, 7\}
+\end{align*}
+
+Part of the answer is shown for applying merge sort to the given array ($mid = (left + right) / 2$):
+\begin{solution}
+\begin{enumerate}
+\item Division: $\{6,2,8,10\}\;\{3,1,7\}$
+\item Division: $\{6,2\}\;\{8,10\}\;\{3,1,7\}$
+\item Division: $\{6\}\;\{2\}\;\{8,10\}\;\{3,1,7\}$
+\item Merge: $\{2,6\}\;\{8,10\}\;\{3,1,7\}$
+\item Division / Merge: $\dots$
+
+$\dots$
+
+Last. Merge: $\{1,2,3,6,7,8,10\}$
+\end{enumerate}
+\end{solution}
+
+Now please simulate merge sort for the following array:
+\begin{align*}
+A = \{6, 3, 15, 2, 7, 11, 8, 1, 10, 9, 4, 13\}
+\end{align*}
+Please show all the details of each division or merge.
+\begin{solution}
+% Write your answer here
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+~\\
+\end{solution}
+% \newpage
+\section{Selection Algorithm (20 points, after Lec5)}
+
+\begin{enumerate}[(a)]
+\item Tim is an undergraduate student taking VE281. He is interested in \textbf{random} selection algorithm and wondering which scenario will be the \textbf{worst-case} one.
+\begin{itemize}
+    \item For the following input sequence, can you give out the pivot sequence for the worst-case scenario? Suppose that we are finding the 3-rd biggest element. (6 points)\\
+    Input sequence:
+    $$23,7,30,24,12,17,9$$
+    Solution format for the pivot sequence:\\
+    (Certainly the pivot selection is not correct for the requirement :) It is only for clarifying the format.)
+    \begin{solution}
+
+    Pick 23: 12, 7, 9, 17, 23, 24, 30\\
+    ...
+    \end{solution}
+    Write your answer below:
+    \begin{solution}
+        % Write your answer here
+        ~\\
+        ~\\
+        ~\\
+        ~\\
+        ~\\
+        ~\\
+    \end{solution}
+\item What is the time complexity of the worst-case scenario? (2 points)
+\begin{solution}
+    % Write your answer here
+\end{solution}
+\end{itemize}
+\item William is a master of algorithm. He thinks that Tim's selection algorithm is too naive
+and prefers \textbf{deterministic} selection algorithm. However, since his favorite number is 7,
+he \textbf{partitions the numbers by groups of 7 rather than 5}. He is confident that such a change
+will make no difference to the time complexity of the algorithm. Is him right? Namely, will the time
+complexity of William's new selection algorithm \textbf{still be $O(n)$}, where n is the amount of
+input numbers? Give your proof. (8 points)
+
+\begin{solution}
+    % Write your answer here
+    ~\\
+    ~\\
+    ~\\
+    ~\\
+    ~\\
+    ~\\
+\end{solution}
+\item When we consider the time complexity of an algorithm, we usually ignore the constant coefficients since we care about large $n$. Similarly, if we only consider the large cases, which algorithm do you think may work better, deterministic or random? State your reason in detail. (4 points) (Hint: think about William's change and what professor said in the lecture before you have your answer.)
+\begin{solution}
+    % Write your answer here
+    ~\\
+    ~\\
+    ~\\
+    ~\\
+\end{solution}
+\end{enumerate}
+
+
+\end{document}
